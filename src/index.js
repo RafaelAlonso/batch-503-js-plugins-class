@@ -10,23 +10,13 @@ form.addEventListener('submit',(event)=>{
 
   movieList.innerHTML = ''
 
-  fetch(url).then(response => response.json())
-            .then((data)=>{
-                data['Search'].forEach((movie)=>{
+  fetch(url)
+    .then(response => response.json())
+    .then((data)=>{
+        data['Search'].forEach((movie)=>{
+          const poster = `<img src='${movie['Poster']}' height='160'>`;
 
-                  const title = `<h3>${movie['Title']}</h3>`;
-                  const poster = `<img src='${movie['Poster']}'>`;
-
-                  movieList.insertAdjacentHTML('beforeend', `<li>${title}${poster}</li>`)
-                });
-             });
-
-
-
-
-
-
-
+          movieList.insertAdjacentHTML('beforeend', `<li>${poster}</li>`)
+        });
+     });
 });
-
-
